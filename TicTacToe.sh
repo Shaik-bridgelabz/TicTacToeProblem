@@ -4,27 +4,29 @@ function reset() {
 	echo "========================================"
 	echo "TicTacToe game "
 	Arr=(. . . . . . . . .)
-	player=1;
+	player=0;
 	gameStatus=1;
 	echo "Game Started"
 }
 
 function checkSymbol() {
-	if [ $player -eq 1 ]
+	if [ $player -eq 0 ]
 	then
 		symbol=o;
-	else
-		symbol=x;
+		echo "Players Symbol is $symbol"
+		csymbol=x;
+		echo "Computers Symbol is $csymbol"
 	fi
-	echo "Player Symbol is" $symbol
 }
 
 function checkToss(){
 	toss=$(( RANDOM % 2))
 	if [ $toss -eq 1 ]
 	then
+		turn=1;
 		echo "Player Won Toss(Play first)"
 	else
+		turn=0;
 		echo "Computer Won Toss(Play first)"
 	fi
 }
@@ -55,6 +57,7 @@ function checkWin(){
 }
 
 function putSymbol() {
+
 	ids=$(( $1 * 3 + $2 ))
 	if [ ${Arr[$ids]} == "." ]
 	then
@@ -62,30 +65,45 @@ function putSymbol() {
 	else
 		echo "You cant place there!"
 	fi
+
 }
 
 function readInput() {
 	read -p "Enter [row] value " row
 	read -p "Enter [Coloumn] value " col
+	symbol=o;
 	if [ $row -le 2 ] && [ $col -le 2 ]
 	then
    	putSymbol $row $col $symbol
 	else
-   	echo "Wrong Input, Please renter Row and Coloumn"
+   	echo "Wrong Input, Please reenter Row and Coloumn"
 	fi
 }
 
 
 reset
 dispBoard
+echo "Lets Start Game"
 checkToss
 checkSymbol
-echo "Lets Start Game"
 while [ $gameStatus == 1 ]
 do
+	((turn++))
+	if [ $(($turn%2)) == 0 ]
+	then
+	echo "Players Turn"
 	readInput
 	dispBoard
 	checkWin
+	else
+	echo "Computers Turn"
+	row=$((RANDOM%3))
+	col=$((RANDOM%3))
+	csymbol=x
+	putSymbol $row $col $csymbol
+	dispBoard
+	checkWin
+	fi
 done
 	if [ $gameStatus != 1 ]
 	then
