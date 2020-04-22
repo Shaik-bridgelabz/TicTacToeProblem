@@ -10,7 +10,8 @@ function reset() {
 }
 
 function checkSymbol() {
-	if [ $player -eq 1 ]
+	check=$(( RANDOM % 2 ))
+	if [ $check -eq 1 ]
 	then
 		symbol=o;
 	else
@@ -41,6 +42,12 @@ function checkMatch(){
 	then
 		gameStatus=0;
 	fi
+
+	if [ $gameStatus != 1 ]
+   then
+      echo "GameOver"
+      echo "Player ($symbol) win!"
+   fi
 }
 
 function checkWin(){
@@ -53,6 +60,16 @@ function checkWin(){
 	checkMatch 3 6 9
 	checkMatch 2 4 6
 }
+
+function checkTie(){
+	playCount=$1
+	if [[ $playCount -eq $totalCount ]]
+	then
+	echo	"Match tie"
+	exit
+	fi
+}
+
 
 function putSymbol() {
 	ids=$(( $1 * 3 + $2 ))
@@ -75,22 +92,22 @@ function readInput() {
 	fi
 }
 
-
+playCount=0;
+totalCount=9;
 reset
 dispBoard
 checkToss
 checkSymbol
 echo "Lets Start Game"
-while [ $gameStatus == 1 ]
-do
+function playerTurn() {
 	readInput
-	dispBoard
-	checkWin
+   dispBoard
+   checkWin
+}
+
+while [ $gameStatus -eq 1 ]
+do
+	playerTurn
+	((playCount++))
+	checkTie $playCount
 done
-	if [ $gameStatus != 1 ]
-	then
-		echo "GameOver"
-		echo "Player ($symbol) win!"
-	fi
-
-
