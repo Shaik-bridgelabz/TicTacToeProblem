@@ -10,13 +10,17 @@ function reset() {
 }
 
 function checkSymbol() {
-	if [ $player -eq 0 ]
+	check=$(( RANDOM % 2 ))
+	if [ $check -eq 1 ]
 	then
-		symbol=o;
-		echo "Players Symbol is $symbol"
+		psymbol=o;
 		csymbol=x;
-		echo "Computers Symbol is $csymbol"
+	else
+		psymbol=x;
+		csymbol=o;
 	fi
+	echo "Player Symbol is" $psymbol
+	echo "Computer Symbol is" $csymbol
 }
 
 function checkToss(){
@@ -43,6 +47,12 @@ function checkMatch(){
 	then
 		gameStatus=0;
 	fi
+	if [ $gameStatus != 1 ]
+   then
+      echo "GameOver"
+      echo "Player with symbol ($symbol) win!"
+   fi
+
 }
 
 function checkWin(){
@@ -56,7 +66,16 @@ function checkWin(){
 	checkMatch 2 4 6
 }
 
-function putSymbol() {
+function checkTie(){
+	playCount=$1
+	if [[ $playCount -eq $totalCount ]]
+	then
+	echo	"Match tie"
+	exit
+	fi
+}
+
+function putpSymbol() {
 
 	ids=$(( $1 * 3 + $2 ))
 	if [ ${Arr[$ids]} == "." ]
@@ -64,9 +83,22 @@ function putSymbol() {
 		Arr[$ids]=$3
 	else
 		echo "You cant place there!"
-	fi
-
+		readInput
+fi
 }
+
+function putcSymbol() {
+
+   ids=$(( $1 * 3 + $2 ))
+   if [ ${Arr[$ids]} == "." ]
+   then
+      Arr[$ids]=$3
+   else
+      echo "You cant place there!"
+      compTurn
+fi
+}
+
 
 function readInput() {
 	read -p "Enter [row] value " row
@@ -74,41 +106,49 @@ function readInput() {
 	symbol=o;
 	if [ $row -le 2 ] && [ $col -le 2 ]
 	then
-   	putSymbol $row $col $symbol
+   	putpSymbol $row $col $symbol
 	else
    	echo "Wrong Input, Please reenter Row and Coloumn"
 	fi
 }
 
+function playerTurn() {
+   readInput
+   dispBoard
+   checkWin
+   checkTie $playCount
+}
+
+function compTurn() {
+   row=$((RANDOM%3))
+   col=$((RANDOM%3))
+   putcSymbol $row $col $csymbol
+   dispBoard
+   checkWin
+   checkTie $playCount
+
+}
+
+
+playCount=0;
+totalCount=9;
 
 reset
 dispBoard
-echo "Lets Start Game"
 checkToss
 checkSymbol
+
 while [ $gameStatus == 1 ]
 do
+	((playCount++))
 	((turn++))
 	if [ $(($turn%2)) == 0 ]
 	then
-	echo "Players Turn"
-	readInput
-	dispBoard
-	checkWin
+		echo "Players Turn"
+		playerTurn
+
 	else
-	echo "Computers Turn"
-	row=$((RANDOM%3))
-	col=$((RANDOM%3))
-	csymbol=x
-	putSymbol $row $col $csymbol
-	dispBoard
-	checkWin
+		echo "Computers Turn"
+		compTurn
 	fi
 done
-	if [ $gameStatus != 1 ]
-	then
-		echo "GameOver"
-		echo "Player ($symbol) win!"
-	fi
-
-
