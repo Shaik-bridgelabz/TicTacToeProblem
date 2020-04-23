@@ -99,6 +99,202 @@ function putcSymbol() {
 fi
 }
 
+function checkWinLogic() {
+	symbolnew=$1;
+   	if [ ${Arr[$0]} == $symbolnew ] && [ ${Arr[$1]} == $symbolnew ]
+   	then
+      if [ ${Arr[2]} == "." ]
+		then
+				${Arr[2]}= $symbolnew
+				flag=true;
+		fi
+
+		elif [ ${Arr[$1]} == $symbolnew ] && [ ${Arr[$2]} == $symbolnew ]
+   	then
+      	if [ ${Arr[0]} == "." ]
+      	then
+            ${Arr[0]}= $symbolnew
+      		flag=true;
+      	fi
+
+		elif [ ${Arr[$2]} == $symbolnew ] && [ ${Arr[$0]} == $symbolnew ]
+      then
+         if [ ${Arr[1]} == "." ]
+         then
+            ${Arr[1]}= $symbolnew
+            flag=true;
+         fi
+
+		elif [ ${Arr[$3]} == $symbolnew ] && [ ${Arr[$4]} == $symbolnew ]
+      then
+      if [ ${Arr[5]} == "." ]
+      then
+            ${Arr[5]}= $symbolnew
+            flag=true;
+      fi
+
+      elif [ ${Arr[$4]} == $symbolnew ] && [ ${Arr[$5]} == $symbolnew ]
+      then
+         if [ ${Arr[3]} == "." ]
+         then
+            ${Arr[3]}= $symbolnew
+            flag=true;
+         fi
+
+      elif [ ${Arr[$5]} == $symbolnew ] && [ ${Arr[$3]} == $symbolnew ]
+      then
+         if [ ${Arr[4]} == "." ]
+         then
+            ${Arr[4]}= $symbolnew
+            flag=true;
+         fi
+
+
+      elif [ ${Arr[$6]} == $symbolnew ] && [ ${Arr[$7]} == $symbolnew ]
+      then
+      if [ ${Arr[8]} == "." ]
+      then
+            ${Arr[8]}= $symbolnew
+            flag=true;
+      fi
+
+      elif [ ${Arr[$7]} == $symbolnew ] && [ ${Arr[$8]} == $symbolnew ]
+      then
+         if [ ${Arr[6]} == "." ]
+         then
+            ${Arr[6]}= $symbolnew
+            flag=true;
+         fi
+
+      elif [ ${Arr[$8]} == $symbolnew ] && [ ${Arr[$6]} == $symbolnew ]
+      then
+         if [ ${Arr[7]} == "." ]
+         then
+            ${Arr[7]}= $symbolnew
+            flag=true;
+         fi
+
+		elif [ ${Arr[$0]} == $symbolnew ] && [ ${Arr[$3]} == $symbolnew ]
+      then
+      if [ ${Arr[6]} == "." ]
+      then
+            ${Arr[6]}= $symbolnew
+            flag=true;
+      fi
+
+      elif [ ${Arr[$3]} == $symbolnew ] && [ ${Arr[$6]} == $symbolnew ]
+      then
+         if [ ${Arr[0]} == "." ]
+         then
+            ${Arr[0]}= $symbolnew
+            flag=true;
+         fi
+
+      elif [ ${Arr[$0]} == $symbolnew ] && [ ${Arr[$6]} == $symbolnew ]
+      then
+         if [ ${Arr[3]} == "." ]
+         then
+            ${Arr[3]}= $symbolnew
+            flag=true;
+         fi
+
+		elif [ ${Arr[$1]} == $symbolnew ] && [ ${Arr[$4]} == $symbolnew ]
+      then
+      if [ ${Arr[7]} == "." ]
+      then
+            ${Arr[7]}= $symbolnew
+            flag=true;
+      fi
+
+      elif [ ${Arr[$4]} == $symbolnew ] && [ ${Arr[$7]} == $symbolnew ]
+      then
+         if [ ${Arr[1]} == "." ]
+         then
+            ${Arr[6]}= $symbolnew
+            flag=true;
+         fi
+
+      elif [ ${Arr[$1]} == $symbolnew ] && [ ${Arr[$7]} == $symbolnew ]
+      then
+         if [ ${Arr[4]} == "." ]
+         then
+            ${Arr[4]}= $symbolnew
+            flag=true;
+         fi
+
+		elif [ ${Arr[$2]} == $symbolnew ] && [ ${Arr[$5]} == $symbolnew ]
+      then
+      if [ ${Arr[8]} == "." ]
+      then
+            ${Arr[8]}= $symbolnew
+            flag=true;
+      fi
+
+      elif [ ${Arr[$5]} == $symbolnew ] && [ ${Arr[$8]} == $symbolnew ]
+      then
+         if [ ${Arr[2]} == "." ]
+         then
+            ${Arr[2]}= $symbolnew
+            flag=true;
+         fi
+
+      elif [ ${Arr[$8]} == $symbolnew ] && [ ${Arr[$2]} == $symbolnew ]
+      then
+         if [ ${Arr[5]} == "." ]
+         then
+            ${Arr[5]}= $symbolnew
+            flag=true;
+         fi
+
+		elif [ ${Arr[$6]} == $symbolnew ] && [ ${Arr[$3]} == $symbolnew ]
+      then
+      if [ ${Arr[9]} == "." ]
+      then
+            ${Arr[9]}= $symbolnew
+            flag=true;
+      fi
+
+      elif [ ${Arr[$6]} == $symbolnew ] && [ ${Arr[$9]} == $symbolnew ]
+      then
+         if [ ${Arr[3]} == "." ]
+         then
+            ${Arr[3]}= $symbolnew
+            flag=true;
+         fi
+
+      elif [ ${Arr[$3]} == $symbolnew ] && [ ${Arr[$9]} == $symbolnew ]
+      then
+         if [ ${Arr[6]} == "." ]
+         then
+            ${Arr[6]}= $symbolnew
+            flag=true;
+         fi
+
+		elif [ ${Arr[$2]} == $symbolnew ] && [ ${Arr[$4]} == $symbolnew ]
+      then
+      if [ ${Arr[6]} == "." ]
+      then
+            ${Arr[6]}= $symbolnew
+            flag=true;
+      fi
+
+      elif [ ${Arr[$4]} == $symbolnew ] && [ ${Arr[$6]} == $symbolnew ]
+      then
+         if [ ${Arr[2]} == "." ]
+         then
+            ${Arr[2]}= $symbolnew
+            flag=true;
+         fi
+
+      elif [ ${Arr[$2]} == $symbolnew ] && [ ${Arr[$6]} == $symbolnew ]
+      then
+         if [ ${Arr[4]} == "." ]
+         then
+            ${Arr[4]}= $symbolnew
+            flag=true;
+         fi
+		fi
+}
 
 function readInput() {
 	read -p "Enter [row] value " row
@@ -120,13 +316,21 @@ function playerTurn() {
 }
 
 function compTurn() {
-   row=$((RANDOM%3))
-   col=$((RANDOM%3))
-   putcSymbol $row $col $csymbol
-   dispBoard
+	flag="false";
+	checkWinLogic $csymbol
+   if [[ $flag == true ]]
+	then
+	displayBoard
    checkWin
    checkTie $playCount
-
+	else
+		row=$((RANDOM%2))
+		col=$((RANDOM%2))
+		putcSymbol $row $col $csymbol
+		dispBoard
+		checkWin
+		checkTie $playCount
+	fi
 }
 
 
@@ -137,7 +341,6 @@ reset
 dispBoard
 checkToss
 checkSymbol
-
 while [ $gameStatus == 1 ]
 do
 	((playCount++))
