@@ -23,17 +23,6 @@ function checkSymbol() {
 	echo "Computer Symbol is" $csymbol
 }
 
-function checkToss(){
-	toss=$(( RANDOM % 2))
-	if [ $toss -eq 1 ]
-	then
-		turn=1;
-		echo "Player Won Toss(Play first)"
-	else
-		turn=0;
-		echo "Computer Won Toss(Play first)"
-	fi
-}
 
 function dispBoard(){
 	echo "row/col 0 1 2"
@@ -47,12 +36,6 @@ function checkMatch(){
 	then
 		gameStatus=0;
 	fi
-	if [ $gameStatus != 1 ]
-   then
-      echo "GameOver"
-      echo "Player with symbol ($symbol) win!"
-   fi
-
 }
 
 function checkWin(){
@@ -62,13 +45,14 @@ function checkWin(){
 	checkMatch 0 3 6
 	checkMatch 1 4 7
 	checkMatch 2 5 8
-	checkMatch 3 6 9
+	checkMatch 0 4 8
 	checkMatch 2 4 6
 }
 
 function checkTie(){
 	playCount=$1
-	if [[ $playCount -eq $totalCount ]]
+	gamestatus=$2
+	if [[ $playCount -eq $totalCount ]] && [[ $gamestatus -eq 0 ]]
 	then
 	echo	"Match tie"
 	exit
@@ -101,459 +85,505 @@ fi
 
 function checkWinLogic() {
 	symbolnew=$1;
-   	if [ ${Arr[$0]} == $symbolnew ] && [ ${Arr[$1]} == $symbolnew ]
+   	if [ ${Arr[0]} == "$symbolnew" ] && [ ${Arr[1]} == "$symbolnew" ]
    	then
       	if [ ${Arr[2]} == "." ]
 	then
-		${Arr[2]}= $symbolnew
+		Arr[2]= "$symbolnew"
 		flag=true;
 	fi
 
-	elif [ ${Arr[$1]} == $symbolnew ] && [ ${Arr[$2]} == $symbolnew ]
+	elif [ ${Arr[1]} == "$symbolnew" ] && [ ${Arr[2]} == "$symbolnew" ]
    	then
       	if [ ${Arr[0]} == "." ]
       	then
-            ${Arr[0]}= $symbolnew
+            Arr[0]= "$symbolnew"
       		flag=true;
       	fi
 
-	elif [ ${Arr[$2]} == $symbolnew ] && [ ${Arr[$0]} == $symbolnew ]
+	elif [ ${Arr[2]} == "$symbolnew" ] && [ ${Arr[0]} == "$symbolnew" ]
       	then
         if [ ${Arr[1]} == "." ]
         then
-            ${Arr[1]}= $symbolnew
+            Arr[1]= "$symbolnew"
             flag=true;
          fi
 
-	elif [ ${Arr[$3]} == $symbolnew ] && [ ${Arr[$4]} == $symbolnew ]
+	elif [ ${Arr[3]} == "$symbolnew" ] && [ ${Arr[4]} == "$symbolnew" ]
       	then
       	if [ ${Arr[5]} == "." ]
       	then
-            ${Arr[5]}= $symbolnew
+            Arr[5]= "$symbolnew"
             flag=true;
       	fi
 
-      	elif [ ${Arr[$4]} == $symbolnew ] && [ ${Arr[$5]} == $symbolnew ]
+      	elif [ ${Arr[4]} == "$symbolnew" ] && [ ${Arr[5]} == "$symbolnew" ]
       	then
         if [ ${Arr[3]} == "." ]
         then
-            ${Arr[3]}= $symbolnew
+            Arr[3]= "$symbolnew"
             flag=true;
         fi
 
-      	elif [ ${Arr[$5]} == $symbolnew ] && [ ${Arr[$3]} == $symbolnew ]
+      	elif [ ${Arr[5]} == "$symbolnew" ] && [ ${Arr[3]} == "$symbolnew" ]
       	then
         if [ ${Arr[4]} == "." ]
         then
-            ${Arr[4]}= $symbolnew
+            Arr[4]= "$symbolnew"
             flag=true;
         fi
 
 
-      	elif [ ${Arr[$6]} == $symbolnew ] && [ ${Arr[$7]} == $symbolnew ]
+      	elif [ ${Arr[6]} == "$symbolnew" ] && [ ${Arr[7]} == "$symbolnew" ]
       	then
       	if [ ${Arr[8]} == "." ]
       	then
-            ${Arr[8]}= $symbolnew
+            Arr[8]= "$symbolnew"
             flag=true;
       	fi
 
-      	elif [ ${Arr[$7]} == $symbolnew ] && [ ${Arr[$8]} == $symbolnew ]
+      	elif [ ${Arr[7]} == "$symbolnew" ] && [ ${Arr[8]} == "$symbolnew" ]
       	then
         if [ ${Arr[6]} == "." ]
         then
-            ${Arr[6]}= $symbolnew
+            Arr[6]= "$symbolnew"
             flag=true;
         fi
 
-      	elif [ ${Arr[$8]} == $symbolnew ] && [ ${Arr[$6]} == $symbolnew ]
+      	elif [ ${Arr[8]} == "$symbolnew" ] && [ ${Arr[6]} == "$symbolnew" ]
       	then
         if [ ${Arr[7]} == "." ]
         then
-            ${Arr[7]}= $symbolnew
+            Arr[7]= "$symbolnew"
             flag=true;
         fi
 
-	elif [ ${Arr[$0]} == $symbolnew ] && [ ${Arr[$3]} == $symbolnew ]
+	elif [ ${Arr[0]} == "$symbolnew" ] && [ ${Arr[3]} == "$symbolnew" ]
       	then
       	if [ ${Arr[6]} == "." ]
       	then
-            ${Arr[6]}= $symbolnew
+            Arr[6]= "$symbolnew"
             flag=true;
       	fi
 
-      	elif [ ${Arr[$3]} == $symbolnew ] && [ ${Arr[$6]} == $symbolnew ]
+      	elif [ ${Arr[3]} == "$symbolnew" ] && [ ${Arr[6]} == "$symbolnew" ]
       	then
         if [ ${Arr[0]} == "." ]
         then
-            ${Arr[0]}= $symbolnew
+            Arr[0]= "$symbolnew"
             flag=true;
         fi
 
-      	elif [ ${Arr[$0]} == $symbolnew ] && [ ${Arr[$6]} == $symbolnew ]
+      	elif [ ${Arr[0]} == "$symbolnew" ] && [ ${Arr[6]} == "$symbolnew" ]
       	then
         if [ ${Arr[3]} == "." ]
         then
-            ${Arr[3]}= $symbolnew
+            Arr[3]= "$symbolnew"
             flag=true;
         fi
 
-	elif [ ${Arr[$1]} == $symbolnew ] && [ ${Arr[$4]} == $symbolnew ]
+	elif [ ${Arr[1]} == "$symbolnew" ] && [ ${Arr[4]} == "$symbolnew" ]
       	then
       	if [ ${Arr[7]} == "." ]
       	then
-            ${Arr[7]}= $symbolnew
+            Arr[7]= "$symbolnew"
             flag=true;
       	fi
 
-      	elif [ ${Arr[$4]} == $symbolnew ] && [ ${Arr[$7]} == $symbolnew ]
+      	elif [ ${Arr[4]} == "$symbolnew" ] && [ ${Arr[7]} == "$symbolnew" ]
       	then
         if [ ${Arr[1]} == "." ]
         then
-            ${Arr[1]}= $symbolnew
+            Arr[1]= "$symbolnew"
             flag=true;
         fi
 
-      	elif [ ${Arr[$1]} == $symbolnew ] && [ ${Arr[$7]} == $symbolnew ]
+      	elif [ ${Arr[1]} == "$symbolnew" ] && [ ${Arr[7]} == "$symbolnew" ]
       	then
         if [ ${Arr[4]} == "." ]
         then
-            ${Arr[4]}= $symbolnew
+            Arr[4]= "$symbolnew"
             flag=true;
         fi
 
-        elif [ ${Arr[$2]} == $symbolnew ] && [ ${Arr[$5]} == $symbolnew ]
+        elif [ ${Arr[2]} == "$symbolnew" ] && [ ${Arr[5]} == "$symbolnew" ]
         then
         if [ ${Arr[8]} == "." ]
         then
-            ${Arr[8]}= $symbolnew
+            Arr[8]= "$symbolnew"
             flag=true;
         fi
 
-	elif [ ${Arr[$8]} == $symbolnew ] && [ ${Arr[$5]} == $symbolnew ]
+	elif [ ${Arr[8]} == "$symbolnew" ] && [ ${Arr[5]} == "$symbolnew" ]
 	then
         if [ ${Arr[2]} == "." ]
         then
-            ${Arr[2]}= $symbolnew
+            Arr[2]= "$symbolnew"
             flag=true;
         fi
 
-      	elif [ ${Arr[$8]} == $symbolnew ] && [ ${Arr[$2]} == $symbolnew ]
+      	elif [ ${Arr[8]} == "$symbolnew" ] && [ ${Arr[2]} == "$symbolnew" ]
       	then
         if [ ${Arr[5]} == "." ]
         then
-            ${Arr[5]}= $symbolnew
+            Arr[5]= "$symbolnew"
             flag=true;
         fi
 
-	elif [ ${Arr[$6]} == $symbolnew ] && [ ${Arr[$3]} == $symbolnew ]
+	elif [ ${Arr[0]} == "$symbolnew" ] && [ ${Arr[4]} == "$symbolnew" ]
       	then
-      	if [ ${Arr[9]} == "." ]
+      	if [ ${Arr[8]} == "." ]
       	then
-            ${Arr[9]}= $symbolnew
+            Arr[8]= "$symbolnew"
             flag=true;
       	fi
 
-      	elif [ ${Arr[$6]} == $symbolnew ] && [ ${Arr[$9]} == $symbolnew ]
+      	elif [ ${Arr[8]} == "$symbolnew" ] && [ ${Arr[4]} == "$symbolnew" ]
       	then
-        if [ ${Arr[3]} == "." ]
+        if [ ${Arr[0]} == "." ]
         then
-            ${Arr[3]}= $symbolnew
+            Arr[0]= "$symbolnew"
             flag=true;
         fi
 
-      	elif [ ${Arr[$3]} == $symbolnew ] && [ ${Arr[$9]} == $symbolnew ]
-      	then
-        if [ ${Arr[6]} == "." ]
-        then
-            ${Arr[6]}= $symbolnew
-            flag=true;
-        fi
-
-	elif [ ${Arr[$2]} == $symbolnew ] && [ ${Arr[$4]} == $symbolnew ]
-      	then
-      	if [ ${Arr[6]} == "." ]
-      	then
-            ${Arr[6]}= $symbolnew
-            flag=true;
-      	fi
-
-      	elif [ ${Arr[$4]} == $symbolnew ] && [ ${Arr[$6]} == $symbolnew ]
-      	then
-        if [ ${Arr[2]} == "." ]
-        then
-            ${Arr[2]}= $symbolnew
-            flag=true;
-        fi
-
-      	elif [ ${Arr[$2]} == $symbolnew ] && [ ${Arr[$6]} == $symbolnew ]
+      	elif [ ${Arr[0]} == "$symbolnew" ] && [ ${Arr[8]} == "$symbolnew" ]
       	then
         if [ ${Arr[4]} == "." ]
         then
-            ${Arr[4]}= $symbolnew
+            Arr[4]= "$symbolnew"
+            flag=true;
+        fi
+
+	elif [ ${Arr[2]} == "$symbolnew" ] && [ ${Arr[4]} == "$symbolnew" ]
+      	then
+      	if [ ${Arr[6]} == "." ]
+      	then
+            Arr[6]= "$symbolnew"
+            flag=true;
+      	fi
+
+      	elif [ ${Arr[4]} == "$symbolnew" ] && [ ${Arr[6]} == "$symbolnew" ]
+      	then
+        if [ ${Arr[2]} == "." ]
+        then
+            Arr[2]= "$symbolnew"
+            flag=true;
+        fi
+
+      	elif [ ${Arr[2]} == "$symbolnew" ] && [ ${Arr[6]} == "$symbolnew" ]
+      	then
+        if [ ${Arr[4]} == "." ]
+        then
+            Arr[4]= "$symbolnew"
             flag=true;
         fi
 	fi
 }
-
+n
 function checkBlockLogic() {
-pSymbol=$1;
-cSymbol=$2;
-
- if [ ${Arr[$0]} == $pSymbol ] && [ ${Arr[$1]} == $pSymbol ]
+ if [ ${Arr[0]} == "$psymbol" ] && [ ${Arr[1]} == "$psymbol" ]
         then
         if [ ${Arr[2]} == "." ]
         then
-                ${Arr[2]}= $cSymbol
+                Arr[2]="$csymbol";
                 flag1=true;
         fi
 
-        elif [ ${Arr[$1]} == $pSymbol ] && [ ${Arr[$2]} == $pSymbol ]
+        elif [ ${Arr[1]} == "$psymbol" ] && [ ${Arr[2]} == "$psymbol" ]
         then
         if [ ${Arr[0]} == "." ]
         then
-            ${Arr[0]}= $cSymbol
+            	Arr[0]="$csymbol";
                 flag1=true;
         fi
 
-        elif [ ${Arr[$2]} == $pSymbol ] && [ ${Arr[$0]} == $pSymbol ]
+        elif [ ${Arr[2]} == "$psymbol" ] && [ ${Arr[0]} == "$psymbol" ]
         then
         if [ ${Arr[1]} == "." ]
         then
-            ${Arr[1]}= $cSymbol
+            Arr[1]="$csymbol";
             flag1=true;
          fi
 
-        elif [ ${Arr[$3]} == $pSymbol ] && [ ${Arr[$4]} == $pSymbol ]
+        elif [ ${Arr[3]} == "$psymbol" ] && [ ${Arr[4]} == "$psymbol" ]
         then
         if [ ${Arr[5]} == "." ]
         then
-            ${Arr[5]}= $cSymbol
+            Arr[5]="$csymbol";
             flag1=true;
         fi
 
- 	elif [ ${Arr[$4]} == $pSymbol ] && [ ${Arr[$5]} == $pSymbol ]
+ 	elif [ ${Arr[4]} == "$psymbol" ] && [ ${Arr[5]} == "$psymbol" ]
         then
         if [ ${Arr[3]} == "." ]
         then
-            ${Arr[3]}= $cSymbol
+            Arr[3]="$csymbol";
             flag1=true;
         fi
 
-        elif [ ${Arr[$5]} == $pSymbol ] && [ ${Arr[$3]} == $pSymbol ]
+        elif [ ${Arr[5]} == "$psymbol" ] && [ ${Arr[3]} == "$psymbol" ]
         then
         if [ ${Arr[4]} == "." ]
         then
-            ${Arr[4]}= $cSymbol
+            Arr[4]="$csymbol";
             flag1=true;
         fi
 
 
-        elif [ ${Arr[$6]} == $pSymbol ] && [ ${Arr[$7]} == $pSymbol ]
+        elif [ ${Arr[6]} == "$psymbol" ] && [ ${Arr[7]} == "$psymbol" ]
         then
         if [ ${Arr[8]} == "." ]
         then
-            ${Arr[8]}= $cSymbol
+            Arr[8]="$csymbol";
             flag1=true;
         fi
 
-        elif [ ${Arr[$7]} == $pSymbol ] && [ ${Arr[$8]} == $pSymbol ]
+        elif [ ${Arr[7]} == "$psymbol" ] && [ ${Arr[8]} == "$psymbol" ]
         then
         if [ ${Arr[6]} == "." ]
         then
-            ${Arr[6]}= $cSymbol
+            Arr[6]="$csymbol";
             flag1=true;
         fi
 
- 	elif [ ${Arr[$8]} == $pSymbol ] && [ ${Arr[$6]} == $pSymbol ]
+ 	elif [ ${Arr[8]} == "$psymbol" ] && [ ${Arr[6]} == "$psymbol" ]
         then
         if [ ${Arr[7]} == "." ]
         then
-            ${Arr[7]}= $cSymbol
+            Arr[7]="$csymbol";
             flag1=true;
         fi
 
-        elif [ ${Arr[$0]} == $pSymbol ] && [ ${Arr[$3]} == $pSymbol ]
+        elif [ ${Arr[0]} == "$psymbol" ] && [ ${Arr[3]} == "$psymbol" ]
         then
         if [ ${Arr[6]} == "." ]
         then
-            ${Arr[6]}= $cSymbol
+            Arr[6]="$csymbol";
             flag1=true;
         fi
 
-        elif [ ${Arr[$3]} == $pSymbol ] && [ ${Arr[$6]} == $pSymbol ]
+        elif [ ${Arr[3]} == "$psymbol" ] && [ ${Arr[6]} == "$psymbol" ]
         then
         if [ ${Arr[0]} == "." ]
         then
-            ${Arr[0]}= $cSymbol
+            Arr[0]="$csymbol";
             flag1=true;
         fi
 
-        elif [ ${Arr[$0]} == $pSymbol ] && [ ${Arr[$6]} == $pSymbol ]
+        elif [ ${Arr[0]} == "$psymbol" ] && [ ${Arr[6]} == "$psymbol" ]
         then
         if [ ${Arr[3]} == "." ]
         then
-            ${Arr[3]}= $cSymbol
+            Arr[3]="$csymbol";
             flag1=true;
         fi
 
- 	elif [ ${Arr[$1]} == $pSymbol ] && [ ${Arr[$4]} == $pSymbol ]
+ 	elif [ ${Arr[1]} == "$psymbol" ] && [ ${Arr[4]} == "$psymbol" ]
         then
         if [ ${Arr[7]} == "." ]
         then
-            ${Arr[7]}= $cSymbol
+            Arr[7]="$csymbol";
             flag1=true;
         fi
 
-        elif [ ${Arr[$4]} == $pSymbol ] && [ ${Arr[$7]} == $pSymbol ]
+        elif [ ${Arr[4]} == "$psymbol" ] && [ ${Arr[7]} == "$psymbol" ]
         then
         if [ ${Arr[1]} == "." ]
         then
-            ${Arr[6]}= $cSymbol
+            Arr[6]="$csymbol";
             flag1=true;
         fi
 
-        elif [ ${Arr[$1]} == $pSymbol ] && [ ${Arr[$7]} == $pSymbol ]
+        elif [ ${Arr[1]} == "$psymbol" ] && [ ${Arr[7]} == "$psymbol" ]
         then
         if [ ${Arr[4]} == "." ]
         then
-            ${Arr[4]}= $cSymbol
+            Arr[4]="$csymbol";
             flag1=true;
         fi
 
-        elif [ ${Arr[$2]} == $pSymbol ] && [ ${Arr[$5]} == $pSymbol ]
+        elif [ ${Arr[2]} == "$psymbol" ] && [ ${Arr[5]} == "$psymbol" ]
         then
         if [ ${Arr[8]} == "." ]
         then
-            ${Arr[8]}= $cSymbol
+            Arr[8]="$csymbol";
             flag1=true;
         fi
 
- 	elif [ ${Arr[$8]} == $pSymbol ] && [ ${Arr[$5]} == $pSymbol ]
+ 	elif [ ${Arr[8]} == "$psymbol" ] && [ ${Arr[5]} == "$psymbol" ]
         then
         if [ ${Arr[2]} == "." ]
         then
-            ${Arr[2]}= $cSymbol
+            Arr[2]="$csymbol";
             flag1=true;
         fi
 
-        elif [ ${Arr[$8]} == $pSymbol ] && [ ${Arr[$2]} == $pSymbol ]
+        elif [ ${Arr[8]} == "$psymbol" ] && [ ${Arr[2]} == "$psymbol" ]
         then
         if [ ${Arr[5]} == "." ]
         then
-            ${Arr[5]}= $cSymbol
+            Arr[5]="$csymbol";
             flag1=true;
         fi
 
-        elif [ ${Arr[$6]} == $pSymbol ] && [ ${Arr[$3]} == $pSymbol ]
+        elif [ ${Arr[0]} == "$psymbol" ] && [ ${Arr[4]} == "$psymbol" ]
         then
-        if [ ${Arr[9]} == "." ]
+        if [ ${Arr[8]} == "." ]
         then
-            ${Arr[9]}= $cSymbol
+            Arr[8]="$csymbol";
             flag1=true;
         fi
 
-        elif [ ${Arr[$6]} == $pSymbol ] && [ ${Arr[$9]} == $pSymbol ]
+        elif [ ${Arr[8]} == "$psymbol" ] && [ ${Arr[4]} == "$psymbol" ]
         then
-        if [ ${Arr[3]} == "." ]
+        if [ ${Arr[0]} == "." ]
         then
-            ${Arr[3]}= $cSymbol
+            Arr[0]="$csymbol";
             flag1=true;
         fi
 
- 	elif [ ${Arr[$3]} == $pSymbol ] && [ ${Arr[$9]} == $pSymbol ]
-        then
-        if [ ${Arr[6]} == "." ]
-        then
-            ${Arr[6]}= $cSymbol
-            flag1=true;
-        fi
-
-        elif [ ${Arr[$2]} == $pSymbol ] && [ ${Arr[$4]} == $pSymbol ]
-        then
-        if [ ${Arr[6]} == "." ]
-        then
-            ${Arr[6]}= $cSymbol
-            flag1=true;
-        fi
-
-        elif [ ${Arr[$4]} == $pSymbol ] && [ ${Arr[$6]} == $pSymbol ]
-        then
-        if [ ${Arr[2]} == "." ]
-        then
-            ${Arr[2]}= $cSymbol
-            flag1=true;
-        fi
-
-        elif [ ${Arr[$2]} == $pSymbol ] && [ ${Arr[$6]} == $pSymbol ]
+ 	elif [ ${Arr[0]} == "$psymbol" ] && [ ${Arr[8]} == "$psymbol" ]
         then
         if [ ${Arr[4]} == "." ]
         then
-            ${Arr[4]}= $cSymbol
+            Arr[4]="$csymbol";
+            flag1=true;
+        fi
+
+        elif [ ${Arr[2]} == "$psymbol" ] && [ ${Arr[4]} == "$psymbol" ]
+        then
+        if [ ${Arr[6]} == "." ]
+        then
+            Arr[6]="$csymbol";
+            flag1=true;
+        fi
+
+        elif [ ${Arr[4]} == "$psymbol" ] && [ ${Arr[6]} == "$psymbol" ]
+        then
+        if [ ${Arr[2]} == "." ]
+        then
+            Arr[2]="$csymbol";
+            flag1=true;
+        fi
+
+        elif [ ${Arr[2]} == "$psymbol" ] && [ ${Arr[6]} == "$psymbol" ]
+        then
+        if [ ${Arr[4]} == "." ]
+        then
+            Arr[4]="$csymbol";
             flag1=true;
         fi
         fi
 }
 
+function takeAvailCorners(){
+
+if [[ ${Arr[0]} == "." ]]
+then
+	Arr[0]="$csymbol"
+	flag2="true";
+elif [[ ${Arr[2]} == "." ]]
+then
+        Arr[$2]="$csymbol"
+        flag2="true";
+elif [[ ${Arr[6]} == "." ]]
+then
+        Arr[$6]="$csymbol"
+        flag2="true";
+elif [[ ${Arr[8]} == "." ]]
+then
+        Arr[$8]="$csymbol"
+        flag2="true";
+fi
+
+}
 
 function readInput() {
 	read -p "Enter [row] value " row
 	read -p "Enter [Coloumn] value " col
-	symbol=o;
 	if [ $row -le 2 ] && [ $col -le 2 ]
 	then
-   	putpSymbol $row $col $symbol
+   		putpSymbol $row $col $psymbol
 	else
-   	echo "Wrong Input, Please reenter Row and Coloumn"
+   		echo "Wrong Input, Please reenter Row and Coloumn"
+		readInput
 	fi
 }
 
 function playerTurn() {
+   playCount=$(($playCount+1));
    readInput
    dispBoard
    checkWin
-   checkTie $playCount
+   if [ $gameStatus != 1 ]
+   then
+      echo "GameOver"
+      echo "Player ($psymbol) win!"
+   exit
+   fi
+
+   checkTie $playCount $gameStatus
+   compTurn
 }
 
 function compTurn() {
+	playCount=$(($playCount+1))
 	flag="false";
 	flag1="false";
+	flag2="false";
 	checkWinLogic $csymbol
-   	if [[ $flag == true ]]
+   	if [[ $flag == false ]]
 	then
-		dispBoard
-   		checkWin
-   		checkTie $playCount
-	else
-		checkBlockLogic $pSymbol $cSymbol
-		if [[ $flag1 == true ]]
+		checkBlockLogic
+		if [[ $flag1 == false ]]
 		then
-		dispBoard
-		checkWin
-		checkTie $playCount
+			takeAvailCorners
+		if [[ $flag2 == false ]]
+		then
+			for (( i=0;i<3;i++ ))
+			do
+			for (( j=0;j<3;j++ ))
+			do
+			id=$(( $i * 3 + $j ))
+			if [[ ${Arr[id]} == "." ]]
+			then
+				Arr[$id]}="$csymbol";
+			else
+				echo "Invalid Position"
+			fi
+			done
+			done
+		fi
 		fi
 	fi
+dispBoard
+checkWin
+if [ $gameStatus != 1 ]
+   then
+      echo "GameOver"
+      echo "Computer ($csymbol) win!"
+      exit
+   fi
+
+checkTie $playCount $gameStatus
+playerTurn
 }
 
+function checkToss(){
+        toss=$(( RANDOM % 2))
+        if [ $toss -eq 1 ]
+        then
+                echo "Player Won Toss(Play first)"
+                playerTurn
+        else
+                echo "Computer Won Toss(Play first)"
+                compTurn
+        fi
+}
 
 playCount=0;
 totalCount=9;
-
 reset
 dispBoard
-checkToss
 checkSymbol
-while [ $gameStatus == 1 ]
-do
-	((playCount++))
-	((turn++))
-	if [ $(($turn%2)) == 0 ]
-	then
-		echo "Players Turn"
-		playerTurn
-
-	else
-		echo "Computers Turn"
-		compTurn
-	fi
-done
+checkToss
