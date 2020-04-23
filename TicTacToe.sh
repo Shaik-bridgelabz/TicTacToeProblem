@@ -1,4 +1,4 @@
-#!/bin/bash -x
+git push#!/bin/bash -x
 
 function reset() {
 	echo "========================================"
@@ -484,18 +484,26 @@ then
 	flag2="true";
 elif [[ ${Arr[2]} == "." ]]
 then
-        Arr[$2]="$csymbol"
+        Arr[2]="$csymbol"
         flag2="true";
 elif [[ ${Arr[6]} == "." ]]
 then
-        Arr[$6]="$csymbol"
+        Arr[6]="$csymbol"
         flag2="true";
 elif [[ ${Arr[8]} == "." ]]
 then
-        Arr[$8]="$csymbol"
+        Arr[8]="$csymbol"
         flag2="true";
 fi
 
+}
+
+function takeCenter() {
+if [[ ${Arr[4]} == "." ]]
+then
+	Arr[4]="$csymbol"
+	flag3="true"
+fi
 }
 
 function readInput() {
@@ -540,19 +548,10 @@ function compTurn() {
 			takeAvailCorners
 		if [[ $flag2 == false ]]
 		then
-			for (( i=0;i<3;i++ ))
-			do
-			for (( j=0;j<3;j++ ))
-			do
-			id=$(( $i * 3 + $j ))
-			if [[ ${Arr[id]} == "." ]]
-			then
-				Arr[$id]}="$csymbol";
-			else
-				echo "Invalid Position"
-			fi
-			done
-			done
+		if [[ $flag3 == false ]]
+		then
+			dispBoard
+		fi
 		fi
 		fi
 	fi
