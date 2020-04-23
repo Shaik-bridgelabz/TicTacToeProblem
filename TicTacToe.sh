@@ -55,6 +55,7 @@ function checkTie(){
 	if [[ $playCount -eq $totalCount ]] || [[ $gamestatus -eq 0 ]]
 	then
 	echo	"Match tie"
+	echo 	"Game Over Nobody Won...Try Again"
 	exit
 	fi
 }
