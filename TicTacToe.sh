@@ -1,4 +1,4 @@
-git push#!/bin/bash -x
+#!/bin/bash -x
 
 function reset() {
 	echo "========================================"
@@ -52,7 +52,7 @@ function checkWin(){
 function checkTie(){
 	playCount=$1
 	gamestatus=$2
-	if [[ $playCount -eq $totalCount ]] && [[ $gamestatus -eq 0 ]]
+	if [[ $playCount -eq $totalCount ]] || [[ $gamestatus -eq 0 ]]
 	then
 	echo	"Match tie"
 	exit
@@ -279,7 +279,7 @@ function checkWinLogic() {
         fi
 	fi
 }
-n
+
 function checkBlockLogic() {
  if [ ${Arr[0]} == "$psymbol" ] && [ ${Arr[1]} == "$psymbol" ]
         then
@@ -539,6 +539,7 @@ function compTurn() {
 	flag="false";
 	flag1="false";
 	flag2="false";
+	flag3="false";
 	checkWinLogic $csymbol
    	if [[ $flag == false ]]
 	then
@@ -550,7 +551,19 @@ function compTurn() {
 		then
 		if [[ $flag3 == false ]]
 		then
-			dispBoard
+			for (( i=0;i<3;i++ ))
+                        do
+                        for (( j=0;j<3;j++ ))
+                        do
+                        id=$(( $i * 3 + $j ))
+                        if [[ ${Arr[id]} == "." ]]
+                        then
+                                Arr[$id]}="$csymbol";
+                        else
+                                echo "Invalid Position"
+                        fi
+                        done
+                        done
 		fi
 		fi
 		fi
