@@ -305,7 +305,7 @@ cSymbol=$2;
         if [ ${Arr[2]} == "." ]
         then
                 ${Arr[2]}= $cSymbol
-                flag=true;
+                flag1=true;
         fi
 
         elif [ ${Arr[$1]} == $pSymbol ] && [ ${Arr[$2]} == $pSymbol ]
@@ -313,7 +313,7 @@ cSymbol=$2;
         if [ ${Arr[0]} == "." ]
         then
             ${Arr[0]}= $cSymbol
-                flag=true;
+                flag1=true;
         fi
 
         elif [ ${Arr[$2]} == $pSymbol ] && [ ${Arr[$0]} == $pSymbol ]
@@ -321,7 +321,7 @@ cSymbol=$2;
         if [ ${Arr[1]} == "." ]
         then
             ${Arr[1]}= $cSymbol
-            flag=true;
+            flag1=true;
          fi
 
         elif [ ${Arr[$3]} == $pSymbol ] && [ ${Arr[$4]} == $pSymbol ]
@@ -329,7 +329,7 @@ cSymbol=$2;
         if [ ${Arr[5]} == "." ]
         then
             ${Arr[5]}= $cSymbol
-            flag=true;
+            flag1=true;
         fi
 
  	elif [ ${Arr[$4]} == $pSymbol ] && [ ${Arr[$5]} == $pSymbol ]
@@ -337,7 +337,7 @@ cSymbol=$2;
         if [ ${Arr[3]} == "." ]
         then
             ${Arr[3]}= $cSymbol
-            flag=true;
+            flag1=true;
         fi
 
         elif [ ${Arr[$5]} == $pSymbol ] && [ ${Arr[$3]} == $pSymbol ]
@@ -345,7 +345,7 @@ cSymbol=$2;
         if [ ${Arr[4]} == "." ]
         then
             ${Arr[4]}= $cSymbol
-            flag=true;
+            flag1=true;
         fi
 
 
@@ -354,7 +354,7 @@ cSymbol=$2;
         if [ ${Arr[8]} == "." ]
         then
             ${Arr[8]}= $cSymbol
-            flag=true;
+            flag1=true;
         fi
 
         elif [ ${Arr[$7]} == $pSymbol ] && [ ${Arr[$8]} == $pSymbol ]
@@ -362,7 +362,7 @@ cSymbol=$2;
         if [ ${Arr[6]} == "." ]
         then
             ${Arr[6]}= $cSymbol
-            flag=true;
+            flag1=true;
         fi
 
  	elif [ ${Arr[$8]} == $pSymbol ] && [ ${Arr[$6]} == $pSymbol ]
@@ -370,7 +370,7 @@ cSymbol=$2;
         if [ ${Arr[7]} == "." ]
         then
             ${Arr[7]}= $cSymbol
-            flag=true;
+            flag1=true;
         fi
 
         elif [ ${Arr[$0]} == $pSymbol ] && [ ${Arr[$3]} == $pSymbol ]
@@ -378,7 +378,7 @@ cSymbol=$2;
         if [ ${Arr[6]} == "." ]
         then
             ${Arr[6]}= $cSymbol
-            flag=true;
+            flag1=true;
         fi
 
         elif [ ${Arr[$3]} == $pSymbol ] && [ ${Arr[$6]} == $pSymbol ]
@@ -386,7 +386,7 @@ cSymbol=$2;
         if [ ${Arr[0]} == "." ]
         then
             ${Arr[0]}= $cSymbol
-            flag=true;
+            flag1=true;
         fi
 
         elif [ ${Arr[$0]} == $pSymbol ] && [ ${Arr[$6]} == $pSymbol ]
@@ -394,7 +394,7 @@ cSymbol=$2;
         if [ ${Arr[3]} == "." ]
         then
             ${Arr[3]}= $cSymbol
-            flag=true;
+            flag1=true;
         fi
 
  	elif [ ${Arr[$1]} == $pSymbol ] && [ ${Arr[$4]} == $pSymbol ]
@@ -402,7 +402,7 @@ cSymbol=$2;
         if [ ${Arr[7]} == "." ]
         then
             ${Arr[7]}= $cSymbol
-            flag=true;
+            flag1=true;
         fi
 
         elif [ ${Arr[$4]} == $pSymbol ] && [ ${Arr[$7]} == $pSymbol ]
@@ -410,7 +410,7 @@ cSymbol=$2;
         if [ ${Arr[1]} == "." ]
         then
             ${Arr[6]}= $cSymbol
-            flag=true;
+            flag1=true;
         fi
 
         elif [ ${Arr[$1]} == $pSymbol ] && [ ${Arr[$7]} == $pSymbol ]
@@ -418,7 +418,7 @@ cSymbol=$2;
         if [ ${Arr[4]} == "." ]
         then
             ${Arr[4]}= $cSymbol
-            flag=true;
+            flag1=true;
         fi
 
         elif [ ${Arr[$2]} == $pSymbol ] && [ ${Arr[$5]} == $pSymbol ]
@@ -426,7 +426,7 @@ cSymbol=$2;
         if [ ${Arr[8]} == "." ]
         then
             ${Arr[8]}= $cSymbol
-            flag=true;
+            flag1=true;
         fi
 
  	elif [ ${Arr[$8]} == $pSymbol ] && [ ${Arr[$5]} == $pSymbol ]
@@ -434,7 +434,7 @@ cSymbol=$2;
         if [ ${Arr[2]} == "." ]
         then
             ${Arr[2]}= $cSymbol
-            flag=true;
+            flag1=true;
         fi
 
         elif [ ${Arr[$8]} == $pSymbol ] && [ ${Arr[$2]} == $pSymbol ]
@@ -442,7 +442,7 @@ cSymbol=$2;
         if [ ${Arr[5]} == "." ]
         then
             ${Arr[5]}= $cSymbol
-            flag=true;
+            flag1=true;
         fi
 
         elif [ ${Arr[$6]} == $pSymbol ] && [ ${Arr[$3]} == $pSymbol ]
@@ -450,7 +450,7 @@ cSymbol=$2;
         if [ ${Arr[9]} == "." ]
         then
             ${Arr[9]}= $cSymbol
-            flag=true;
+            flag1=true;
         fi
 
         elif [ ${Arr[$6]} == $pSymbol ] && [ ${Arr[$9]} == $pSymbol ]
@@ -458,7 +458,7 @@ cSymbol=$2;
         if [ ${Arr[3]} == "." ]
         then
             ${Arr[3]}= $cSymbol
-            flag=true;
+            flag1=true;
         fi
 
  	elif [ ${Arr[$3]} == $pSymbol ] && [ ${Arr[$9]} == $pSymbol ]
@@ -466,7 +466,7 @@ cSymbol=$2;
         if [ ${Arr[6]} == "." ]
         then
             ${Arr[6]}= $cSymbol
-            flag=true;
+            flag1=true;
         fi
 
         elif [ ${Arr[$2]} == $pSymbol ] && [ ${Arr[$4]} == $pSymbol ]
@@ -474,7 +474,7 @@ cSymbol=$2;
         if [ ${Arr[6]} == "." ]
         then
             ${Arr[6]}= $cSymbol
-            flag=true;
+            flag1=true;
         fi
 
         elif [ ${Arr[$4]} == $pSymbol ] && [ ${Arr[$6]} == $pSymbol ]
@@ -482,7 +482,7 @@ cSymbol=$2;
         if [ ${Arr[2]} == "." ]
         then
             ${Arr[2]}= $cSymbol
-            flag=true;
+            flag1=true;
         fi
 
         elif [ ${Arr[$2]} == $pSymbol ] && [ ${Arr[$6]} == $pSymbol ]
@@ -490,7 +490,7 @@ cSymbol=$2;
         if [ ${Arr[4]} == "." ]
         then
             ${Arr[4]}= $cSymbol
-            flag=true;
+            flag1=true;
         fi
         fi
 }
@@ -526,9 +526,12 @@ function compTurn() {
    		checkTie $playCount
 	else
 		checkBlockLogic $pSymbol $cSymbol
+		if [[ $flag1 == true ]]
+		then
 		dispBoard
 		checkWin
 		checkTie $playCount
+		fi
 	fi
 }
 
